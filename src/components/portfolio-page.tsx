@@ -11,6 +11,8 @@ type PortfolioPageProps = {
 
 export function PortfolioPage({ locale }: PortfolioPageProps) {
   const content = getPortfolioContent(locale);
+  const badgeClass =
+    "rounded-full bg-accent-soft px-3 py-1.5 text-sm font-medium text-accent-strong";
 
   return (
     <div className="relative isolate overflow-hidden">
@@ -18,13 +20,10 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
       <div className="absolute inset-x-0 top-0 -z-10 h-full bg-[linear-gradient(120deg,rgba(255,255,255,0)_0%,rgba(14,116,144,0.04)_30%,rgba(15,23,42,0.04)_100%)]" />
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/88 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 lg:px-8">
           <Link href={`/${locale}`} className="group">
             <span className="block text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground transition group-hover:text-foreground">
               Giovanni Londei
-            </span>
-            <span className="mt-1 block text-sm text-foreground/80">
-              {content.hero.role}
             </span>
           </Link>
 
@@ -45,20 +44,34 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
       </header>
 
       <main>
-        <section id="hero" className="mx-auto max-w-6xl px-6 pb-20 pt-16 lg:px-8 lg:pb-24 lg:pt-24">
-          <div className="grid gap-10 lg:grid-cols-[minmax(290px,0.72fr)_minmax(0,1.28fr)] lg:items-start">
-            <div className="rounded-[2rem] border border-border/80 bg-white/88 p-4 shadow-[0_20px_64px_rgba(15,23,42,0.08)] backdrop-blur">
-              <div className="mx-auto mb-4 w-full max-w-[88%] overflow-hidden rounded-[1.5rem] border border-border/80 bg-surface">
+        <section id="hero" className="mx-auto max-w-[1440px] px-6 pb-8 pt-16 lg:px-8 lg:pb-10 lg:pt-24">
+          <div className="grid gap-10 lg:grid-cols-[minmax(320px,0.62fr)_minmax(0,1.38fr)] lg:gap-x-20 lg:items-start">
+            <div className="hero-photo-card rounded-[2rem] border border-border/80 bg-white/88 p-4 shadow-[0_20px_64px_rgba(15,23,42,0.08)] backdrop-blur transition duration-500">
+              <div className="mx-auto mb-4 w-full max-w-[88%] overflow-hidden rounded-[1.5rem] border border-border/80 bg-surface transition duration-500">
                 <div className="relative h-[17rem] w-full sm:h-[18.5rem]">
                   <Image
                     src="/images/profile-pic.png"
                     alt="Portrait of Giovanni Londei"
                     fill
                     sizes="(min-width: 1024px) 360px, 100vw"
-                    className="object-cover object-center"
+                    className="object-cover object-center transition duration-500"
                     priority
                   />
                 </div>
+              </div>
+
+              <div className="mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium text-sky-700">
+                {content.hero.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                    className="transition duration-300 hover:text-sky-800"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -82,38 +95,77 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
               </div>
             </div>
 
-            <div className="lg:pt-1">
-              <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-6xl lg:text-[5.25rem] lg:leading-[0.95]">
+            <div className="lg:pt-1 lg:pr-14">
+              <h1 className="hero-name-enter max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-6xl lg:text-[5.25rem] lg:leading-[0.95]">
                 {content.hero.name}
               </h1>
-              <p className="mt-5 max-w-3xl text-xl font-semibold text-foreground/88 sm:text-2xl lg:text-[1.7rem]">
+              <p className="mt-6 pl-1 text-xl font-semibold text-accent-strong sm:text-2xl lg:text-[1.7rem]">
                 {content.hero.role}
               </p>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground sm:text-[1.1rem]">
+              <p className="mt-5 max-w-3xl whitespace-pre-line pl-1 text-lg leading-8 text-muted-foreground sm:text-[1.1rem]">
                 {content.hero.headline}
               </p>
-              <p className="mt-6 font-mono text-sm uppercase tracking-[0.22em] text-foreground/72">
-                {content.hero.stackLine}
-              </p>
-
-              <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-medium text-muted-foreground">
-                {content.hero.links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="transition hover:text-accent-strong"
+              <div className="mt-7 flex flex-wrap items-center gap-3 pl-1">
+                {content.hero.techStack.map((item) => (
+                  <span
+                    key={item.label}
+                    className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-white/82 px-3 py-2 text-sm font-medium text-foreground/78 transition duration-300 hover:-translate-y-0.5 hover:border-accent-strong hover:shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
                   >
-                    {link.label}
-                  </a>
+                    <span
+                      className={`inline-flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-[11px] font-bold uppercase tracking-[0.08em] transition duration-300 group-hover:scale-110 ${item.accentClass}`}
+                    >
+                      {item.shortLabel}
+                    </span>
+                    <span>{item.label}</span>
+                  </span>
                 ))}
+              </div>
+
+              <div className="mt-8 flex flex-col gap-3 pl-1 sm:flex-row sm:items-center">
+                <a
+                  href={content.hero.secondaryCta.href}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#25D366] bg-white/88 px-5 py-3 text-sm font-semibold text-[#1ebe5b] transition duration-300 hover:-translate-y-0.5 hover:bg-[#25D366]/8 hover:shadow-[0_16px_36px_rgba(37,211,102,0.16)]"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.62a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.46-1.29a2 2 0 0 1 2.11-.45c.84.3 1.72.51 2.62.63A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  {content.hero.secondaryCta.label}
+                </a>
+                <a
+                  href={content.hero.primaryCta.href}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white/88 px-5 py-3 text-sm font-semibold text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-accent-strong hover:text-accent-strong hover:shadow-[0_14px_32px_rgba(15,23,42,0.08)]"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 4v10" />
+                    <path d="m8 10 4 4 4-4" />
+                    <path d="M5 19h14" />
+                  </svg>
+                  {content.hero.primaryCta.label}
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="about" className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
+        <section id="about" className="mx-auto max-w-[1440px] px-6 pb-8 pt-3 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)]">
             <SectionHeading
               eyebrow={content.about.eyebrow}
@@ -138,7 +190,7 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
           </div>
         </section>
 
-        <section id="experience" className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
+        <section id="experience" className="mx-auto max-w-[1440px] px-6 py-8 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)]">
             <SectionHeading
               eyebrow={content.experience.eyebrow}
@@ -180,10 +232,7 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
 
                   <div className="mt-6 flex flex-wrap gap-2">
                     {item.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-accent-soft px-3 py-1.5 text-sm font-medium text-accent-strong"
-                      >
+                      <span key={tech} className={badgeClass}>
                         {tech}
                       </span>
                     ))}
@@ -194,7 +243,7 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
           </div>
         </section>
 
-        <section id="skills" className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
+        <section id="skills" className="mx-auto max-w-[1440px] px-6 py-8 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)]">
             <SectionHeading
               eyebrow={content.skills.eyebrow}
@@ -212,10 +261,7 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
                   </h3>
                   <div className="mt-4 flex flex-wrap gap-2.5">
                     {category.items.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-border bg-surface px-3 py-1.5 text-sm text-foreground/85"
-                      >
+                      <span key={skill} className={badgeClass}>
                         {skill}
                       </span>
                     ))}
@@ -226,7 +272,7 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
           </div>
         </section>
 
-        <section id="contact" className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
+        <section id="contact" className="mx-auto max-w-[1440px] px-6 py-8 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)]">
             <SectionHeading
               eyebrow={content.contact.eyebrow}
@@ -256,7 +302,7 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
       </main>
 
       <footer className="border-t border-border/70">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-8 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <p>{content.footer.copy}</p>
           <p>{content.footer.note}</p>
         </div>

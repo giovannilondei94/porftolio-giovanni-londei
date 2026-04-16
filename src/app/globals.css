@@ -38,6 +38,22 @@ body {
   font-family: var(--font-manrope), sans-serif;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(14, 116, 144, 0.08), transparent 28%),
+    linear-gradient(135deg, rgba(15, 118, 110, 0.04), transparent 38%),
+    linear-gradient(rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+  background-size: auto, auto, 36px 36px, 36px 36px;
+  background-position: center, center, center, center;
+  opacity: 0.55;
+  z-index: -1;
+}
+
 a,
 button {
   outline-color: rgba(15, 118, 110, 0.45);
@@ -63,4 +79,38 @@ button {
   li {
     text-wrap: pretty;
   }
+}
+
+@keyframes heroNameEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSubtitleFade {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero-name-enter {
+  animation: heroNameEnter 0.7s ease-out both;
+}
+
+.hero-subtitle-fade {
+  animation: heroSubtitleFade 5s ease-in-out infinite;
+}
+
+.hero-photo-card:hover {
+  transform: perspective(1200px) rotateX(1.8deg) rotateY(-4deg) translateY(-2px);
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 118, 110, 0.1);
 }

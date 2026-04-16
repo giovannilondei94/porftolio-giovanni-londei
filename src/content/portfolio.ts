@@ -12,9 +12,19 @@ export type PortfolioContent = {
     name: string;
     role: string;
     headline: string;
-    stackLine: string;
-    primaryCta: string;
-    secondaryCta: string;
+    techStack: Array<{
+      label: string;
+      shortLabel: string;
+      accentClass: string;
+    }>;
+    primaryCta: {
+      label: string;
+      href: string;
+    };
+    secondaryCta: {
+      label: string;
+      href: string;
+    };
     links: Array<{ label: string; href: string }>;
     facts: Array<{ label: string; value: string }>;
   };
@@ -102,12 +112,32 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     hero: {
       eyebrow: "Interactive Web Portfolio",
       name: "Giovanni Londei",
-      role: "Senior Full Stack Developer",
+      role: "Full Stack Developer",
       headline:
-        "Progetto e sviluppo applicazioni enterprise scalabili per Pubblica Amministrazione e sanità, con oltre 8 anni di esperienza tra modernizzazione legacy, API robuste e frontend evolution.",
-      stackLine: "Java • Spring Boot • Angular • AI Integration",
-      primaryCta: "Scopri i progetti",
-      secondaryCta: "Contattami",
+        "Full Stack Developer con oltre 8 anni di esperienza nella costruzione di applicazioni web scalabili e performanti.\nSpecializzato nella modernizzazione di sistemi legacy e nella creazione di architetture backend e frontend robuste e future-proof.",
+      techStack: [
+        { label: "Java", shortLabel: "J", accentClass: "bg-[#e76f51]/14 text-[#d4573b]" },
+        {
+          label: "Spring Boot",
+          shortLabel: "S",
+          accentClass: "bg-[#6db33f]/16 text-[#4f9425]",
+        },
+        { label: "Angular", shortLabel: "A", accentClass: "bg-[#dd0031]/14 text-[#c1002a]" },
+        { label: "Next.js", shortLabel: "N", accentClass: "bg-slate-900/10 text-slate-800" },
+        {
+          label: "AI Integration",
+          shortLabel: "AI",
+          accentClass: "bg-[#7c3aed]/12 text-[#6d28d9]",
+        },
+      ],
+      primaryCta: {
+        label: "Scarica CV",
+        href: "mailto:giovanni.londei.94@gmail.com?subject=CV%20Request%20-%20Giovanni%20Londei",
+      },
+      secondaryCta: {
+        label: "Contattami",
+        href: "#contact",
+      },
       links: [
         { label: "GitHub", href: sharedContactLinks.github },
         { label: "LinkedIn", href: sharedContactLinks.linkedin },
@@ -116,7 +146,6 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       facts: [
         { label: "Based in", value: "Italy" },
         { label: "Modalità", value: "Remote Friendly" },
-        { label: "Esperienza", value: "8+ anni di esperienza" },
       ],
     },
     about: {
@@ -320,12 +349,32 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     hero: {
       eyebrow: "Interactive Web Portfolio",
       name: "Giovanni Londei",
-      role: "Senior Full Stack Developer",
+      role: "Full Stack Developer",
       headline:
-        "I design and build scalable enterprise applications for Public Administration and healthcare, with 8+ years of experience across legacy modernization, robust APIs, and frontend evolution.",
-      stackLine: "Java • Spring Boot • Angular • AI Integration",
-      primaryCta: "View Projects",
-      secondaryCta: "Get in touch",
+        "Full Stack Developer with over 8 years of experience building scalable, high-performance web applications.\nSpecialized in legacy system modernization and in creating robust, future-proof backend and frontend architectures.",
+      techStack: [
+        { label: "Java", shortLabel: "J", accentClass: "bg-[#e76f51]/14 text-[#d4573b]" },
+        {
+          label: "Spring Boot",
+          shortLabel: "S",
+          accentClass: "bg-[#6db33f]/16 text-[#4f9425]",
+        },
+        { label: "Angular", shortLabel: "A", accentClass: "bg-[#dd0031]/14 text-[#c1002a]" },
+        { label: "Next.js", shortLabel: "N", accentClass: "bg-slate-900/10 text-slate-800" },
+        {
+          label: "AI Integration",
+          shortLabel: "AI",
+          accentClass: "bg-[#7c3aed]/12 text-[#6d28d9]",
+        },
+      ],
+      primaryCta: {
+        label: "Download CV",
+        href: "mailto:giovanni.londei.94@gmail.com?subject=CV%20Request%20-%20Giovanni%20Londei",
+      },
+      secondaryCta: {
+        label: "Let’s Talk",
+        href: "#contact",
+      },
       links: [
         { label: "GitHub", href: sharedContactLinks.github },
         { label: "LinkedIn", href: sharedContactLinks.linkedin },
@@ -334,7 +383,6 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       facts: [
         { label: "Based in", value: "Italy" },
         { label: "Work model", value: "Remote Friendly" },
-        { label: "Experience", value: "8+ years of experience" },
       ],
     },
     about: {
