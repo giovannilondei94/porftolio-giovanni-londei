@@ -54,6 +54,20 @@ export type PortfolioContent = {
     description: string;
     categories: Array<{ title: string; items: string[] }>;
   };
+  education: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    cards: Array<{
+      title: string;
+      items: Array<{
+        title: string;
+        institution: string;
+        period?: string;
+        detail: string;
+      }>;
+    }>;
+  };
   projects: {
     eyebrow: string;
     title: string;
@@ -107,6 +121,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       { label: "Profilo", href: "#about" },
       { label: "Esperienza", href: "#experience" },
       { label: "Competenze", href: "#skills" },
+      { label: "Formazione", href: "#education" },
       { label: "Contatti", href: "#contact" },
     ],
     hero: {
@@ -149,33 +164,33 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       ],
     },
     about: {
-      eyebrow: "About",
-      title: "Costruisco software solido, mantenibile e pronto ad evolvere",
+      eyebrow: "ABOUT",
+      title: "Sviluppo e Modernizzazione del Software",
       summary:
-        "Esperienza concreta nello sviluppo di applicazioni web enterprise con attenzione a qualità del codice, continuità evolutiva e collaborazione tecnica.",
+        "Full Stack Developer con 8+ anni di esperienza su sistemi enterprise in ambito PA e sanità.\nSpecializzato nella gestione di applicazioni complesse, dalla traduzione dei requisiti di business in soluzioni tecniche alla modernizzazione di software legacy e allo sviluppo di sistemi robusti e mantenibili.",
       highlights: [
         {
-          title: "Delivery end-to-end",
+          title: "Delivery End-to-End",
           body:
-            "Seguo l’intero ciclo di delivery, dal backend Java e Spring Boot fino al frontend Angular, mantenendo coerenza tecnica tra API, interfacce e integrazioni.",
+            "Gestisco l’intero ciclo di sviluppo software, dalla progettazione backend alla realizzazione frontend su applicazioni enterprise.\n\nProgetto e sviluppo REST API, definendo modelli dati e integrazioni tra sistemi complessi.\n\nGarantisco coerenza architetturale, qualità del codice e affidabilità lungo tutte le fasi di delivery.",
         },
         {
-          title: "Modernizzazione applicativa",
+          title: "Modernizzazione Applicativa",
           body:
-            "Lavoro su sistemi enterprise che richiedono evoluzione progressiva: refactoring, migrazione da stack legacy e introduzione di soluzioni più moderne senza perdere stabilità.",
+            "Modernizzo applicazioni legacy attraverso refactoring e migrazioni verso stack moderni, migliorando manutenibilità e performance.\n\nGestisco evoluzioni incrementali mantenendo stabilità operativa e continuità dei servizi in produzione.\n\nIntroduco soluzioni tecnologiche più sostenibili nel lungo termine.",
         },
         {
-          title: "Collaborazione tecnica",
+          title: "Collaborazione Tecnica",
           body:
-            "Contribuisco con code review, mentoring e supporto operativo quotidiano, aiutando piccoli team a mantenere qualità, chiarezza e continuità di delivery.",
+            "Supporto il team con code review, mentoring e guida tecnica su progetti complessi.\n\nContribuisco alla diffusione di best practice e al miglioramento continuo della qualità del codice.\n\nFavorisco chiarezza architetturale e collaborazione efficace in contesti Agile.",
         },
       ],
     },
     experience: {
       eyebrow: "Experience",
-      title: "Esperienze costruite su modernizzazione, ownership e continuità operativa",
+      title: "Esperienze su Sistemi Reali",
       description:
-        "Esperienze full stack e backend in cui ho contribuito con sviluppo diretto, evoluzione applicativa e supporto tecnico al team.",
+        "Esperienze su sistemi enterprise in produzione, dall’analisi dei requisiti allo sviluppo, modernizzazione ed evoluzione di applicazioni complesse, tra legacy, nuove funzionalità e continuità operativa.",
       items: [
         {
           company: "Alten Italia",
@@ -184,10 +199,10 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Milano (Remote)",
           context: "Public Administration",
           responsibilities: [
-            "Modernizzazione e manutenzione di applicazioni enterprise per la PA tra moduli legacy e nuove funzionalità.",
-            "Migrazione frontend da AngularJS ad Angular 17 con attenzione a continuità evolutiva e manutenibilità.",
-            "Progettazione di REST API Spring Boot per funzionalità nuove e integrazioni di sistema.",
-            "Supporto tecnico al team con code review, mentoring e affiancamento a 2 junior developer.",
+            "Modernizzazione e manutenzione di applicazioni enterprise per la PA, garantendo continuità operativa e supporto all’introduzione di nuove funzionalità.",
+            "Migrazione frontend da AngularJS ad Angular 17, migliorando manutenibilità, performance e qualità dell’esperienza utente.",
+            "Progettazione e sviluppo di API REST con Spring Boot per nuove funzionalità e integrazioni tra sistemi.",
+            "Supporto tecnico al team con code review, mentoring e affiancamento di 2 junior developer, contribuendo alla qualità del codice e alla crescita del team.",
           ],
           stack: ["Java 8-17", "Spring Boot", "AngularJS", "Angular 17", "PostgreSQL"],
         },
@@ -198,10 +213,10 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Milano (Remote)",
           context: "Distributed Audit",
           responsibilities: [
-            "Sviluppo di un sistema audit distribuito basato su architettura a microservizi.",
-            "Implementazione di event tracking con Kafka per auditabilità e tracciabilità.",
-            "Uso di Spring AOP per logging strutturato e monitoraggio degli eventi REST.",
-            "Contributo al disegno di servizi backend pronti per ambienti di produzione.",
+            "Sviluppo di un sistema di audit distribuito basato su architettura a microservizi, progettato per garantire tracciabilità e auditabilità degli eventi.",
+            "Implementazione di event tracking con Kafka per la gestione scalabile degli eventi e il monitoraggio dei flussi applicativi.",
+            "Utilizzo di Spring AOP per logging strutturato e osservabilità dei servizi REST.",
+            "Contributo al design di servizi backend pronti per ambienti di produzione.",
           ],
           stack: ["Java 17", "Spring Boot", "Kafka", "MongoDB"],
         },
@@ -212,9 +227,9 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Bologna",
           context: "Healthcare Software",
           responsibilities: [
-            "Sviluppo e manutenzione di applicazioni healthcare dedicate a workflow medici multidisciplinari.",
-            "Collaborazione diretta con stakeholder per raccogliere requisiti e definire soluzioni aderenti al contesto.",
-            "Implementazione full stack con Spring Boot e Angular in ambienti regolati con forti esigenze di affidabilità.",
+            "Sviluppo e manutenzione di applicazioni healthcare per la gestione di workflow medici multidisciplinari.",
+            "Collaborazione diretta con stakeholder per raccolta requisiti e definizione di soluzioni tecniche aderenti al contesto.",
+            "Implementazione full stack con Spring Boot e Angular in ambienti regolati, con elevati requisiti di affidabilità e continuità operativa.",
           ],
           stack: ["Java 8", "Spring Boot", "AngularJS", "Angular 7", "PostgreSQL"],
         },
@@ -225,8 +240,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Bologna",
           context: "Hospital Information System",
           responsibilities: [
-            "Sviluppo e manutenzione di moduli core di un Hospital Information System in produzione.",
-            "Contributo all’evoluzione di piattaforme healthcare con focus su stabilità e continuità operativa.",
+            "Sviluppo e manutenzione di moduli core di un Hospital Information System utilizzato in produzione.",
+            "Contributo all’evoluzione di piattaforme healthcare con focus su stabilità, affidabilità e continuità operativa.",
           ],
           stack: ["Java EE", "AngularJS", "PostgreSQL", "MongoDB"],
         },
@@ -234,29 +249,73 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     },
     skills: {
       eyebrow: "Skills",
-      title: "Competenze tecniche organizzate per aree operative",
+      title: "Tech Stack",
       description:
-        "Stack principale focalizzato su sviluppo enterprise, integrazione applicativa e modernizzazione di piattaforme web.",
+        "Tecnologie utilizzate nello sviluppo di applicazioni enterprise e sistemi complessi.",
       categories: [
         {
-          title: "Backend",
-          items: ["Java 8-17", "Spring Boot", "Java EE", "REST APIs", "JUnit", "Microservices"],
+          title: "Backend e API",
+          items: ["Java 8–17", "Spring Boot", "REST API", "Microservices", "JUnit", "Java EE"],
         },
         {
-          title: "Frontend",
-          items: ["AngularJS", "Angular 7-17", "TypeScript", "JavaScript", "HTML5", "Next.js"],
+          title: "Frontend e Modernizzazione",
+          items: ["AngularJS", "Angular (7→17)", "TypeScript", "JavaScript", "HTML5", "Next.js"],
         },
         {
-          title: "Databases",
+          title: "Data Layer",
           items: ["PostgreSQL", "Oracle", "MongoDB", "MySQL"],
         },
         {
-          title: "DevOps / Tools",
+          title: "DevOps e Delivery",
           items: ["Docker", "Kubernetes", "Git", "Maven", "Jenkins", "Postman"],
         },
         {
-          title: "Other",
-          items: ["Python", "Agile / Scrum", "Mentoring", "Code Review", "AI-Integration"],
+          title: "Pratiche di Ingegneria",
+          items: ["Code Review", "Mentoring", "Agile / Scrum", "AI Integration"],
+        },
+        {
+          title: "Architettura e Integrazione",
+          items: ["API Design", "System Integration", "Legacy Modernization", "Enterprise Applications"],
+        },
+      ],
+    },
+    education: {
+      eyebrow: "Education",
+      title: "Formazione & Lingue",
+      description:
+        "Percorso formativo e competenze linguistiche a supporto di un profilo tecnico orientato a contesti professionali e internazionali.",
+      cards: [
+        {
+          title: "Formazione",
+          items: [
+            {
+              title: "Laurea in Informatica per il Management",
+              institution: "Università di Bologna",
+              period: "2013 – 2017",
+              detail: "Voto finale: 98/110",
+            },
+            {
+              title: "Diploma di Perito Informatico",
+              institution: "I.T.I.S. “Enrico Mattei”",
+              period: "2008 – 2013",
+              detail: "Voto finale: 87/100",
+            },
+          ],
+        },
+        {
+          title: "Lingue",
+          items: [
+            {
+              title: "Italiano",
+              institution: "",
+              detail: "Madrelingua",
+            },
+            {
+              title: "Inglese",
+              institution: "",
+              detail: "B2 – utilizzo professionale in contesti tecnici",
+            },
+          ],
         },
       ],
     },
@@ -300,9 +359,9 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Disponibile per opportunità full stack, consulenza e progetti ad alto impatto",
+      title: "Collaboriamo",
       description:
-        "Contatto diretto per ruoli tecnici, collaborazioni su prodotti digitali e iniziative che richiedono ownership applicativa e attenzione alla qualità.",
+        "Disponibile per ruoli full stack e collaborazioni su applicazioni enterprise, modernizzazione software e sistemi complessi. Aperto a opportunità remote con aziende internazionali.",
       links: [
         {
           label: "Email",
@@ -344,6 +403,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       { label: "Profile", href: "#about" },
       { label: "Experience", href: "#experience" },
       { label: "Skills", href: "#skills" },
+      { label: "Education", href: "#education" },
       { label: "Contact", href: "#contact" },
     ],
     hero: {
@@ -386,33 +446,33 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       ],
     },
     about: {
-      eyebrow: "About",
-      title: "I build solid, maintainable software designed to evolve",
+      eyebrow: "ABOUT",
+      title: "Software Development and Modernization",
       summary:
-        "Hands-on experience delivering enterprise web applications with a strong focus on code quality, long-term evolution, and technical collaboration.",
+        "Full Stack Developer with 8+ years of experience working on enterprise systems in public administration and healthcare.\nSpecialized in managing complex applications, from translating business requirements into technical solutions to modernizing legacy software and building robust, maintainable systems.",
       highlights: [
         {
-          title: "End-to-end delivery",
+          title: "End-to-End Delivery",
           body:
-            "I work across the full stack, from Java and Spring Boot services to Angular frontends, keeping APIs, UI, and integration work aligned.",
+            "I manage the full software delivery lifecycle, from backend design to frontend implementation across enterprise applications.\n\nI design and build REST APIs, defining data models and integrations across complex systems.\n\nI ensure architectural consistency, code quality, and reliability throughout every stage of delivery.",
         },
         {
-          title: "Application modernization",
+          title: "Application Modernization",
           body:
-            "I contribute to enterprise systems that need progressive evolution, including legacy modernization, framework migration, and maintainable technical direction.",
+            "I modernize legacy applications through refactoring and migrations toward modern stacks, improving maintainability and performance.\n\nI manage incremental evolution while preserving operational stability and service continuity in production.\n\nI introduce technology choices that are more sustainable over the long term.",
         },
         {
-          title: "Technical collaboration",
+          title: "Technical Collaboration",
           body:
-            "I support delivery through code reviews, mentoring, and day-to-day technical guidance, helping small teams move with clarity and consistency.",
+            "I support the team through code reviews, mentoring, and technical guidance on complex projects.\n\nI contribute to spreading best practices and continuously improving code quality.\n\nI promote architectural clarity and effective collaboration in Agile environments.",
         },
       ],
     },
     experience: {
       eyebrow: "Experience",
-      title: "Roles shaped by modernization, ownership, and delivery continuity",
+      title: "Experience on Real-World Systems",
       description:
-        "Full stack and backend roles where I contributed through implementation, system evolution, and technical support for the team.",
+        "Experience on enterprise systems in production, from requirements analysis to development, modernization, and evolution of complex applications across legacy systems, new features, and operational continuity.",
       items: [
         {
           company: "Alten Italia",
@@ -421,10 +481,10 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Milan (Remote)",
           context: "Public Administration",
           responsibilities: [
-            "Modernized and maintained enterprise-grade public administration applications across legacy and new modules.",
-            "Led frontend migration from AngularJS to Angular 17 with focus on continuity and maintainability.",
-            "Designed Spring Boot REST APIs for new features and system integrations.",
-            "Supported the team through code reviews, mentoring, and day-to-day guidance for two junior developers.",
+            "Modernization and maintenance of enterprise applications for public administration, ensuring operational continuity and supporting the introduction of new features.",
+            "Frontend migration from AngularJS to Angular 17, improving maintainability, performance, and user experience.",
+            "Design and development of REST APIs using Spring Boot for new features and system integrations.",
+            "Technical support to the team through code reviews, mentoring, and guidance of 2 junior developers.",
           ],
           stack: ["Java 8-17", "Spring Boot", "AngularJS", "Angular 17", "PostgreSQL"],
         },
@@ -435,10 +495,10 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Milan (Remote)",
           context: "Distributed Audit",
           responsibilities: [
-            "Developed a distributed audit system built on a microservices architecture.",
-            "Implemented Kafka-based event tracking for auditability and traceability.",
-            "Used Spring AOP for structured logging and REST event monitoring.",
-            "Contributed to backend service design with a production-ready approach.",
+            "Development of a distributed audit system based on microservices architecture, ensuring traceability and auditability of events.",
+            "Implementation of event tracking using Kafka for scalable event management and monitoring.",
+            "Use of Spring AOP for structured logging and observability of REST services.",
+            "Contribution to the design of production-ready backend services.",
           ],
           stack: ["Java 17", "Spring Boot", "Kafka", "MongoDB"],
         },
@@ -449,9 +509,9 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Bologna",
           context: "Healthcare Software",
           responsibilities: [
-            "Developed and maintained healthcare applications supporting multidisciplinary medical workflows.",
-            "Worked directly with stakeholders to gather requirements and shape domain-specific solutions.",
-            "Implemented full stack features with Spring Boot and Angular in regulated environments with strong reliability needs.",
+            "Development and maintenance of healthcare applications supporting multidisciplinary medical workflows.",
+            "Direct collaboration with stakeholders to gather requirements and define context-driven technical solutions.",
+            "Full stack implementation using Spring Boot and Angular in regulated environments with high reliability requirements.",
           ],
           stack: ["Java 8", "Spring Boot", "AngularJS", "Angular 7", "PostgreSQL"],
         },
@@ -462,8 +522,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           location: "Bologna",
           context: "Hospital Information System",
           responsibilities: [
-            "Developed and maintained core modules of a production hospital information system.",
-            "Contributed to the long-term evolution of healthcare platforms with focus on stability and operational continuity.",
+            "Development and maintenance of core modules of a Hospital Information System in production.",
+            "Contribution to the evolution of healthcare platforms with a focus on stability, reliability, and operational continuity.",
           ],
           stack: ["Java EE", "AngularJS", "PostgreSQL", "MongoDB"],
         },
@@ -471,29 +531,73 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     },
     skills: {
       eyebrow: "Skills",
-      title: "Technical capabilities organized by delivery area",
+      title: "Tech Stack",
       description:
-        "Core stack centered on enterprise development, integration work, and modernization of business-critical web platforms.",
+        "Technologies used to build enterprise applications and complex systems.",
       categories: [
         {
-          title: "Backend",
-          items: ["Java 8-17", "Spring Boot", "Java EE", "REST APIs", "JUnit", "Microservices"],
+          title: "Backend & API",
+          items: ["Java 8–17", "Spring Boot", "REST API", "Microservices", "JUnit", "Java EE"],
         },
         {
-          title: "Frontend",
-          items: ["AngularJS", "Angular 7-17", "TypeScript", "JavaScript", "HTML5", "Next.js"],
+          title: "Frontend & Modernization",
+          items: ["AngularJS", "Angular (7→17)", "TypeScript", "JavaScript", "HTML5", "Next.js"],
         },
         {
-          title: "Databases",
+          title: "Data Layer",
           items: ["PostgreSQL", "Oracle", "MongoDB", "MySQL"],
         },
         {
-          title: "DevOps / Tools",
+          title: "DevOps & Delivery",
           items: ["Docker", "Kubernetes", "Git", "Maven", "Jenkins", "Postman"],
         },
         {
-          title: "Other",
-          items: ["Python", "Agile / Scrum", "Mentoring", "Code Review", "AI-Integration"],
+          title: "Engineering Practices",
+          items: ["Code Review", "Mentoring", "Agile / Scrum", "AI Integration"],
+        },
+        {
+          title: "Architecture & Integration",
+          items: ["API Design", "System Integration", "Legacy Modernization", "Enterprise Applications"],
+        },
+      ],
+    },
+    education: {
+      eyebrow: "Education",
+      title: "Education & Languages",
+      description:
+        "Educational background and language skills supporting a technical profile suited for professional and international environments.",
+      cards: [
+        {
+          title: "Education",
+          items: [
+            {
+              title: "Bachelor’s Degree in Computer Science for Management",
+              institution: "University of Bologna",
+              period: "2013 – 2017",
+              detail: "Final grade: 98/110",
+            },
+            {
+              title: "High School Diploma in Computer Science",
+              institution: "I.T.I.S. “Enrico Mattei”",
+              period: "2008 – 2013",
+              detail: "Final grade: 87/100",
+            },
+          ],
+        },
+        {
+          title: "Languages",
+          items: [
+            {
+              title: "Italian",
+              institution: "",
+              detail: "Native",
+            },
+            {
+              title: "English",
+              institution: "",
+              detail: "B2 – professional use in technical environments",
+            },
+          ],
         },
       ],
     },
@@ -537,9 +641,9 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Available for full stack roles, consulting, and high-impact product work",
+      title: "Let’s work together",
       description:
-        "Direct contact channel for technical roles, digital product collaborations, and projects that need hands-on ownership with attention to code quality.",
+        "Available for full stack roles and collaborations on enterprise applications, software modernization, and complex systems. Open to remote opportunities with international companies.",
       links: [
         {
           label: "Email",

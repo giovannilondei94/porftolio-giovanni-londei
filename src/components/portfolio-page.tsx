@@ -172,16 +172,16 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
               title={content.about.title}
               description={content.about.summary}
             />
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:auto-rows-fr md:grid-cols-3">
               {content.about.highlights.map((highlight) => (
                 <article
                   key={highlight.title}
-                  className="rounded-3xl border border-border/80 bg-white/82 p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]"
+                  className="flex h-full flex-col rounded-3xl border border-border/80 bg-white/82 p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]"
                 >
                   <h3 className="text-lg font-semibold text-foreground">
                     {highlight.title}
                   </h3>
-                  <p className="mt-3 text-base leading-7 text-muted-foreground">
+                  <p className="mt-3 whitespace-pre-line text-base leading-7 text-muted-foreground">
                     {highlight.body}
                   </p>
                 </article>
@@ -201,42 +201,60 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
               {content.experience.items.map((item) => (
                 <article
                   key={`${item.company}-${item.period}`}
-                  className="relative rounded-[1.75rem] border border-border/80 bg-white/86 p-6 pl-12 shadow-[0_18px_56px_rgba(15,23,42,0.05)]"
+                  className="relative overflow-hidden rounded-[1.75rem] border border-border/80 bg-white/86 shadow-[0_18px_56px_rgba(15,23,42,0.05)]"
                 >
                   <span className="absolute left-[15px] top-8 h-3 w-3 rounded-full border-4 border-background bg-accent-strong" />
-                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                        {item.period}
-                      </p>
-                      <h3 className="mt-2 text-xl font-semibold text-foreground">
-                        {item.role}
-                      </h3>
-                      <p className="mt-1 text-base text-foreground/80">
-                        {item.company} · {item.location}
-                      </p>
+                  <details className="group" open>
+                    <summary className="flex cursor-pointer list-none flex-col gap-4 p-6 pl-12 outline-none marker:hidden [&::-webkit-details-marker]:hidden md:flex-row md:items-start md:justify-between">
+                      <div>
+                        <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                          {item.period}
+                        </p>
+                        <h3 className="mt-2 text-xl font-semibold text-foreground">
+                          {item.role}
+                        </h3>
+                        <p className="mt-1 text-base text-foreground/80">
+                          {item.company} · {item.location}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3 self-start md:pt-0.5">
+                        <span className="rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                          {item.context}
+                        </span>
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      </div>
+                    </summary>
+
+                    <div className="px-6 pb-6 pl-12">
+                      <ul className="space-y-3 text-base leading-7 text-muted-foreground">
+                        {item.responsibilities.map((responsibility) => (
+                          <li key={responsibility} className="flex gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-strong" />
+                            <span>{responsibility}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {item.stack.map((tech) => (
+                          <span key={tech} className={badgeClass}>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <span className="rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                      {item.context}
-                    </span>
-                  </div>
-
-                  <ul className="mt-5 space-y-3 text-base leading-7 text-muted-foreground">
-                    {item.responsibilities.map((responsibility) => (
-                      <li key={responsibility} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-strong" />
-                        <span>{responsibility}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {item.stack.map((tech) => (
-                      <span key={tech} className={badgeClass}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  </details>
                 </article>
               ))}
             </div>
@@ -250,11 +268,11 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
               title={content.skills.title}
               description={content.skills.description}
             />
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-5 md:auto-rows-fr md:grid-cols-2 xl:grid-cols-3">
               {content.skills.categories.map((category) => (
                 <article
                   key={category.title}
-                  className="rounded-3xl border border-border/80 bg-white/85 p-6 shadow-[0_18px_52px_rgba(15,23,42,0.05)]"
+                  className="flex h-full flex-col rounded-3xl border border-border/80 bg-white/85 p-6 shadow-[0_18px_52px_rgba(15,23,42,0.05)]"
                 >
                   <h3 className="text-lg font-semibold text-foreground">
                     {category.title}
@@ -264,6 +282,53 @@ export function PortfolioPage({ locale }: PortfolioPageProps) {
                       <span key={skill} className={badgeClass}>
                         {skill}
                       </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="education" className="mx-auto max-w-[1440px] px-6 py-8 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)]">
+            <SectionHeading
+              eyebrow={content.education.eyebrow}
+              title={content.education.title}
+              description={content.education.description}
+            />
+            <div className="grid gap-6 md:grid-cols-2">
+              {content.education.cards.map((card) => (
+                <article
+                  key={card.title}
+                  className="rounded-3xl border border-border/80 bg-white/85 p-6 shadow-[0_18px_52px_rgba(15,23,42,0.05)]"
+                >
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {card.title}
+                  </h3>
+                  <div className="mt-5 space-y-5">
+                    {card.items.map((item) => (
+                      <div
+                        key={`${card.title}-${item.title}`}
+                        className="rounded-2xl border border-border/70 bg-surface/70 p-4"
+                      >
+                        <h4 className="text-base font-semibold text-foreground">
+                          {item.title}
+                        </h4>
+                        {item.institution ? (
+                          <p className="mt-1 text-sm text-foreground/80">
+                            {item.institution}
+                          </p>
+                        ) : null}
+                        {item.period ? (
+                          <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                            {item.period}
+                          </p>
+                        ) : null}
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                          {item.detail}
+                        </p>
+                      </div>
                     ))}
                   </div>
                 </article>
