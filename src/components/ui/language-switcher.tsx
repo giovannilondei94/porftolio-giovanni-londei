@@ -7,7 +7,7 @@ type LanguageSwitcherProps = {
 
 export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
   return (
-    <div className="inline-flex rounded-full border border-border bg-white/85 p-1">
+    <div className="panel inline-flex rounded-full p-1 shadow-none">
       {locales.map((item) => {
         const isActive = item === locale;
 
@@ -15,10 +15,10 @@ export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
           <Link
             key={item}
             href={`/${item}`}
-            className={`rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] transition ${
+            className={`rounded-full px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.24em] transition ${
               isActive
-                ? "bg-foreground text-background"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-foreground text-white shadow-[0_10px_22px_rgba(15,23,42,0.14)]"
+                : "text-muted-foreground hover:bg-surface/80 hover:text-foreground"
             }`}
           >
             {localeLabels[item]}

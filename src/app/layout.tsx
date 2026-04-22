@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Manrope } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -60,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${manrope.variable} ${ibmPlexMono.variable} h-full scroll-smooth`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} h-full scroll-smooth`}
     >
       <body className="min-h-full bg-background text-foreground antialiased">
         {children}

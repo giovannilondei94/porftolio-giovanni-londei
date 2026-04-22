@@ -10,14 +10,14 @@ export function SectionHeading({
   description,
 }: SectionHeadingProps) {
   return (
-    <div>
-      <p className="font-mono text-sm uppercase tracking-[0.28em] text-accent-strong">
+    <div className="lg:pr-4">
+      <p className="font-mono text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-accent-strong">
         {eyebrow}
       </p>
-      <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">
+      <h2 className="mt-4 text-[2.15rem] font-semibold tracking-[-0.055em] text-foreground sm:text-[2.55rem] sm:leading-[1.02]">
         {title}
       </h2>
-      <p className="mt-5 max-w-xs whitespace-pre-line text-base leading-7 text-muted-foreground">
+      <p className="mt-5 max-w-sm whitespace-pre-line text-[1.01rem] leading-7 text-muted-foreground">
         {description}
       </p>
     </div>
